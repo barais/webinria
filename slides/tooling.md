@@ -160,9 +160,7 @@ bower init # in CMD (Win) or Terminal (Mac/Linux)
 - Creates bower.json file to manage libraries
 
 ----
-
 ## Package Management: Bower
-
 - Searching for libraries
 ```bash
 bower search kendo
@@ -240,15 +238,18 @@ module.exports = function (grunt) {
 
 - To use a plugin in grunt:
   - Install the plugin
+
 ```bash
 npm install grunt-contrib-jshint --save-dev
 ```
   - Load the plugin
+
 ```js
 //inside the grunt module
 grunt.loadNpmTasks('grunt-contrib-jshint');
 ```
   - Configure the plugin
+
 ```js
 //inside the grunt.initConfig()
 grunt.initConfig({

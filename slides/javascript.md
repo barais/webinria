@@ -300,6 +300,7 @@ alert(parseInt("11") + 11);       // 22
 alert(parseInt("011",8) + 11);      // 20 ???
 alert(parseInt("011", 10) + 11);  // 22
 ```
+
 ----
 ### Arrays Operations and Properties
 

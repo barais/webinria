@@ -150,7 +150,7 @@ Model-View-Controller (MVC)
 - Software architectural pattern
   - Separates display from data
   - Originated with Smalltalk programmers
-  - From work at Xerox PARC in the late 70’s
+  - From work at [Xerox PARC](http://heim.ifi.uio.no/~trygver/themes/mvc/mvc-index.html) in the late 70’s
 
 - Models represent knowledge
 - Views provide a (visual) representation of attached model data
@@ -275,14 +275,14 @@ AngularJS vs jQuery
 
 ----
 ## Why Angular can be good (2)
-1. FLEXIBLE! As big or small as you want it to be
+1. FLEXIBLE! As big or small as you want it to be<!-- .element: class="fragment" -->
   - Two line jQuery replacement to a MASSIVE enterprise app
-2. POJOs make life so easy. No ‘observables’, wrappers etc. Uses dirty checking for 2-way binding.
+2. POJOs make life so easy. No ‘observables’, wrappers etc. Uses dirty checking for 2-way binding.<!-- .element: class="fragment" -->
   - Fully embraces the dynamic nature of JavaScript
-3. The community and popularity
-4. DI, services, factories, providers offer flexibility and familiarity to traditionally server side paradigms
-5. Directives offer DSL-like extension to HTML for your domain specific use cases
-6. Scopes, although tricky, offer extreme flexibility
+3. The community and popularity<!-- .element: class="fragment" -->
+4. DI, services, factories, providers offer flexibility and familiarity to traditionally server side paradigms<!-- .element: class="fragment" -->
+5. Directives offer DSL-like extension to HTML for your domain specific use cases<!-- .element: class="fragment" -->
+6. Scopes, although tricky, offer extreme flexibility<!-- .element: class="fragment" -->
 
 ----
 ## Why Angular can be good (2)
@@ -354,3 +354,627 @@ app.controller("exempleCtrl", function($scope) {
 - An input to be 2-way bound against $scope.yourName
   - *ng-model="lastName"*
 - An input to be 2-way bound against *$scope.yourName*
+
+----
+<div align="center"><img src="resources/test.svg" width="100%"></div>
+
+----
+
+## What is Scope?
+
+-  Scope is an object that refers to the application model. It is an execution context for expressions. Scopes are arranged in hierarchical structure which mimic the DOM structure of the application. Scopes can watch expressions and propagate events. (from Angular website)
+
+- **Key points**
+  - Scope is like a ViewModel that allows communication between JavaScript code and Views
+  - *{{yourName}}* is an expr executed against scope
+  - Scope can be hierarchal with DOM nesting of directives
+  - Watches can be used to watch for changes to scope ex:
+
+```js
+$scope.$watch("yourName", function(value) {
+	//update the DOM with the new value
+});
+```
+
+----
+## What is a Directive?
+- A reusable component for performing DOM interaction, templating and possibly two-way binding against $scope
+  - The ONLY place JS to DOM interaction should occur
+- Angular offers a huge amount of built in directives for common UI tasks, ex:
+```html
+<div ng-show="someBool">someBool is true!</div>
+```
+  - 2 way binding inputs, setting classes, foreach loops of elements, clicking etc.
+
+----
+  ## What is a Directive?
+
+- You can write your own directives for domain specific purposes (a ‘DSL’ for HTML). Ex:
+
+```html
+<slideshow title="Shocked Cats">
+<slide src="cat1.jpg"></slide>
+<slide src="cat2.jpg"></slide>
+…
+</slideshow>
+```
+<p class="fragment current-visible"
+style="position:absolute; left:650px; top:150px;">
+<img src="resources/image_95.jpg" width="300"/></p>
+
+----
+## What is a Directive?
+
+- Or simply invoke an existing jQuery plugin
+```html
+<datepicker ng-model="aDate"></datepicker>
+```
+- Or if you need <=IE8 support:
+
+```html
+<input type="text" datepicker="" ng-model="aDate"/>
+```
+
+----
+## What is a Directive?
+
+- HUGE amount of directives out there due to Angular's popularity. Rarely have to write your own other than domain specific directives
+  - EX: AngularUI
+  - Twitter bootstrap wrappers
+  - Select2
+  - Sorting
+  - Input masking
+  - Enhanced router
+  - Etc…
+  - Various wrappers for jQuery UI components (ex: datepicker)
+  <p style="position:absolute; left:650px; top:250px;">
+  <img src="resources/image_97.jpg" width="200px"/></p>
+
+
+----
+## Adding “message updates" with a Controller
+<div align="center"><img src="resources/image_83.jpg" width="80%"></div>
+
+----
+## What is a Controller?
+
+- A controller is really just a fancy name for a "scope container" that prototypically inherits from its parent scope container.
+- A controller can interact with **$scope** (the 'view model') which the view can also interact with.
+<div align="center"><img src="resources/Controller.svg" width="40%"></div>
+
+
+----
+## Directives and Scope
+<div style="position:absolute; left:0px;  width:300px;font-size: 18pt;"  align="left">
+- A controller is really a directive that is configured to prototypically inherit from its parent <BR>
+- Directives can be configured for what type of scope they create and parent access they have <BR>
+Use "AngularJS Batarang" plugin for Chrome to explore scopes
+</p></div>
+
+<p style="position:absolute; right:0px; top:50px;">
+<img src="resources/rootScope.svg" width="500px"/></p>
+
+----
+## Services
+- Software architectural components
+- Services provide data and compute
+- Exist across views
+- Depend on other services
+- AngularJS has 20+
+- [*$http*](https://docs.angularjs.org/api/ng/service/$http) – service to communicate with servers
+- [*$log*](https://docs.angularjs.org/api/ng/service/$log) – service to do pretty log messages
+
+
+----
+## Server Communication
+
+- *$http* service
+  - Input config object
+  - Returns promise
+  - Communication is asynchronous
+
+```js
+$http({method: ‘GET’, url: fetchUrl})
+  .success(function(data, status) {
+    // process the data here
+  })
+  .error(function(data, status) {
+    // error handling
+});
+```
+
+----
+## Promises
+- [Promises](https://docs.angularjs.org/api/ng/service/$q) represent result of an action
+- Particularly used with asynchronous actions
+- They are either resolved or rejected
+
+
+----
+
+
+## Dependency Injection (DI)
+- DI is a software architectural pattern
+- Separation of concerns
+- Service creation independent from usage
+- Good for
+  - Modular code
+  - Allows AngularJS to wire in correct order
+  - Supports substitution (for patching and testing)
+
+----
+## DI and JavaScript Minification
+- Services identified by parameter name
+- Minification obfuscates the name
+- Pass names as strings in array
+
+```js
+angular.module('GoaleryServices')
+  .factory('StatusManager',
+    [          'CloudLogin', '$q',
+      function (cloudLogin,   $q) {
+...
+}]);
+```
+
+----
+## Fixing the ugly dates and ordering with Filters
+<div align="center"><img src="resources/image_83.jpg" width="80%"></div>
+
+----
+## What is a Filter?
+- A function that transforms an input to an output
+  - Reminds me a lot of LINQ extension method lambdas in .NET
+  - Can be "piped" UNIX style
+  - Can create own
+  - Angular has many built in filters:
+    - currency, date, filter, json, limitTo, lowercase, number, orderBy, uppercase
+    <p style="position:absolute; right:0px; top:-50px;">
+    <img src="resources/image_118.jpg" width="150px"/></p>
+
+----
+## Validation with ng-form
+<div align="center"><img src="resources/image_83.jpg" width="80%"></div>
+
+----
+## What is ng-form?
+- NOT a traditional HTML "form"
+  - Requires a "name" and "ng-model" on each input you wish to validate
+  - Angular will not push invalid values back into bound $scope
+- Allows for validation of collections of controls
+  - Applies CSS classes to elements based on their validity
+  - Lots of built in validator directives that work with ng-form:
+```html
+required=""
+ng-minlength="{number}"
+ng-maxlength="{number}"
+ng-pattern="{string}"
+ng-change="{string}"
+```
+
+----
+## What is ng-form?
+- Angular UI has some extensions
+- AngularAgility - FormExtensions makes it easier
+- [demo](http://angularagility.herokuapp.com/#/formExtensions/formExtensions/basic)
+
+----
+## AngularJS is pure JavaScript
+
+- Prototype-based scripting language
+- Dynamic, weakly typed, first-class functions
+
+- Great JavaScript book:
+  - Crockford (2008) JavaScript: The Good Parts – O’Reilly
+
+----
+## Testing AngularJS Apps
+
+- JavaScript doesn’t have a compiler
+- Must execute code to test
+- Testability was a fundamental objective of AngularJS
+  - Miško Hevery (AngularJS creator)
+  - Previously created JsTestDriver
+
+----
+## AngularJS supports testing
+
+- [Unit testing](https://docs.angularjs.org/guide/unit-testing) support
+    - JsTestDriver
+    - Jasmine
+- DI allows substituting mocks for hard to test code
+  - Server communication
+  - Logging
+- Angular Scenario Runner – [E2E testing](https://docs.angularjs.org/guide/dev_guide.e2e-testing)
+  - Simulates user interations
+
+----
+## Building Web Apps
+- Single web page
+  - Loads the base HTML and included sources once
+  - App changes views dynamically
+- Server is called upon when needed
+- Prefer using asynchronous server calls
+  - Data changes
+  - Fetch more data
+
+----
+  ## Building Web Apps
+
+- Declarative view specification
+- HTML augmented with:
+  - Directives, Markup, Filter, Form Controls
+- Loaded either
+  - with a simple single web page
+  - dynamically into a [view](https://docs.angularjs.org/api/ng/directive/ngView) as partials
+
+----
+## URL Routing
+
+- Define the mapping from URL to view
+- Can also bind controller
+- Define URL parameters
+
+```js
+$routeProvider.when('/Book/:bookId', {
+    templateUrl: 'book.html',
+    controller: BookCntl
+  });
+  $routeProvider.when('/Book/:bookId/ch/:chapterId', {
+    templateUrl: 'chapter.html',
+    controller: ChapterCntl
+  });
+```
+
+----
+## Deep Linking
+- AngularJS navigation updates the browser address bar
+- Uses the HTML5 history API – fallback to hash-bang (#!) URL
+- Users can link to pages in you app
+- Server must recognize the link pattern and serve the application
+- https://github.com/angular-ui/ui-router/wiki/Quick-Reference
+
+----
+## Creating Directives
+- [Directives](https://docs.angularjs.org/guide/directive) package reusable HTML
+- Naming nuance: "myDir" becomes "my-dir"
+- Conceptual compile and link phases
+- Can specify: scope, binding, restrictions, etc
+- Supports transclusion
+   - In computer science, transclusion is the inclusion of part or all of an electronic document into one or more other documents by hypertext reference.
+- Consider creating a custom DSL
+
+----
+## Modules
+- Packaging of JavaScript code
+- [Modules](https://docs.angularjs.org/guide/module) declare dependencies
+- AngularJS instantiates in correct order
+- Provides separation of namespaces
+
+----
+## Let us practice
+- Let us use the yeoman generator
+- Install `yo`, `grunt-cli`, `bower`, `generator-angular` and `generator-karma`:
+```bash
+npm install -g grunt-cli bower yo generator-karma generator-angular
+```
+
+If you are planning on using Sass, you will need to first install Ruby and Compass:
+- Install Ruby by downloading from [here](http://rubyinstaller.org/downloads/) or use Homebrew
+- Install the compass gem:
+```bash
+gem install compass
+```
+
+----
+## Let us practice
+- Make a new directory, and `cd` into it:
+```bash
+mkdir my-new-project && cd $_
+```
+- Run `yo angular`, optionally passing an app name:
+```bash
+yo angular [app-name]
+```
+
+Run `grunt` for building and `grunt serve` for preview
+
+----
+## Generators and sub
+ * [angular](#app) (aka [angular:app](#app))
+ * [angular:controller](#controller)
+ * [angular:directive](#directive)
+ * [angular:filter](#filter)
+ * [angular:route](#route)
+ * [angular:service](#service)
+ * [angular:provider](#service)
+ * [angular:factory](#service)
+ * [angular:value](#service)
+ * [angular:constant](#service)
+ * [angular:decorator](#decorator)
+ * [angular:view](#view)
+
+----
+### App
+- Sets up a new AngularJS app, generating all the boilerplate you need to get started. The app generator also optionally installs Bootstrap and additional AngularJS modules, such as angular-resource (installed by default).
+
+Example:
+```bash
+yo angular
+```
+
+----
+### Route
+- Generates a controller and view, and configures a route in `app/scripts/app.js` connecting them.
+- Example:
+
+```bash
+yo angular:route myroute
+```
+
+- Produces `app/scripts/controllers/myroute.js`:
+
+```javascript
+angular.module('myMod').controller('MyrouteCtrl', function ($scope) {
+  // ...
+});
+```
+
+- Produces `app/views/myroute.html`:
+
+```html
+<p>This is the myroute view</p>
+```
+
+----
+- **Explicitly provide route URI**
+- Example:
+```bash
+yo angular:route myRoute --uri=my/route
+```
+
+- Produces controller and view as above and adds a route to `app/scripts/app.js` with URI `my/route`
+
+----
+### Controller
+- Generates a controller in `app/scripts/controllers`.
+- Example:
+```bash
+yo angular:controller user
+```
+
+- Produces `app/scripts/controllers/user.js`:
+```javascript
+angular.module('myMod').controller('UserCtrl', function ($scope) {
+  // ...
+});
+```
+
+----
+### Directive
+- Generates a directive in `app/scripts/directives`.
+- Example:
+```bash
+yo angular:directive myDirective
+```
+
+- Produces `app/scripts/directives/myDirective.js`:
+```javascript
+angular.module('myMod').directive('myDirective', function () {
+  return {
+    template: '<div></div>',
+    restrict: 'E',
+    link: function postLink(scope, element, attrs) {
+      element.text('this is the myDirective directive');
+    }
+  };
+});
+```
+
+
+----
+### Filter
+- Generates a filter in `app/scripts/filters`.
+- Example:
+
+```bash
+yo angular:filter myFilter
+```
+
+Produces `app/scripts/filters/myFilter.js`:
+```javascript
+angular.module('myMod').filter('myFilter', function () {
+  return function (input) {
+    return 'myFilter filter:' + input;
+  };
+});
+```
+
+----
+### View
+- Generates an HTML view file in `app/views`.
+- Example:
+```bash
+yo angular:view user
+```
+
+- Produces `app/views/user.html`:
+```html
+<p>This is the user view</p>
+```
+
+----
+### Service
+- Generates an AngularJS service.
+- Example:
+```bash
+yo angular:service myService
+```
+
+- Produces `app/scripts/services/myService.js`:
+```javascript
+angular.module('myMod').service('myService', function () {
+  // ...
+});
+```
+
+- You can also do `yo angular:factory`, `yo angular:provider`, `yo angular:value`, and `yo angular:constant` for other types of services.
+
+----
+### Decorator
+- Generates an AngularJS service decorator.
+- Example:
+```bash
+yo angular:decorator serviceName
+```
+
+- Produces `app/scripts/decorators/serviceNameDecorator.js`:
+```javascript
+angular.module('myMod').config(function ($provide) {
+    $provide.decorator('serviceName', function ($delegate) {
+      // ...
+      return $delegate;
+    });
+  });
+```
+
+----
+## Options
+In general, these options can be applied to any generator, though they only affect generators that produce scripts.
+
+----
+
+### CoffeeScript and TypeScript
+For generators that output scripts, the *--coffee* option will output CoffeeScript instead of JavaScript, and *--typescript* will output TypeScript instead of JavaScript.
+
+- For example:
+```bash
+yo angular:controller user --coffee
+```
+
+- Produces `app/scripts/controller/user.coffee`:
+```coffeescript
+angular.module('myMod')
+  .controller 'UserCtrl', ($scope) ->
+```
+
+----
+- For example:
+```bash
+yo angular:controller user --typescript
+```
+
+- Produces *app/scripts/controller/user.ts*:
+
+```ts
+/// <reference path="../app.ts" />
+
+'use strict';
+
+module demoApp {
+    export interface IUserScope extends ng.IScope {
+        awesomeThings: any[];
+    }
+
+    export class UserCtrl {
+
+        constructor (private $scope:IUserScope) {
+	        $scope.awesomeThings = [
+              'HTML5 Boilerplate',
+              'AngularJS',
+              'Karma'
+            ];
+        }
+    }
+}
+
+angular.module('demoApp')
+  .controller('UserCtrl', demoApp.UserCtrl);
+```
+
+----
+
+### Minification Safe
+
+**tl;dr**: You don't need to write annotated code as the build step will
+handle it for you.
+
+<blockquote style="font-size:18pt;"> By default, generators produce unannotated code. Without annotations, AngularJS's DI system will break when minified. Typically, these annotations that make minification safe are added automatically at build-time, after application files are concatenated, but before they are minified. The annotations are important because minified code will rename variables, making it impossible for AngularJS to infer module names based solely on function parameters.</blockquote>
+
+<blockquote style="font-size:18pt;"> The recommended build process uses `ng-annotate`, a tool that automatically adds these annotations. However, if you'd rather not use it, you have to add these annotations manually yourself. Why would you do that though? If you find a bug
+in the annotated code, please file an issue at [ng-annotate](https://github.com/olov/ng-annotate/issues).</blockquote>
+
+
+----
+
+### Add to Index
+- By default, new scripts are added to the index.html file. However, this may not always be suitable. Some use cases:
+ * Manually added to the file
+ * Auto-added by a 3rd party plugin
+ * Using this generator as a subgenerator
+- To skip adding them to the index, pass in the skip-add argument:
+
+```bash
+yo angular:service serviceName --skip-add
+```
+
+----
+## Bower Components
+
+- The following packages are always installed by the [app](#app) generator:
+  * angular
+  * angular-mocks
+
+----
+  ## Bower Components
+- The following additional modules are available as components on bower, and installable via `bower install`:
+  * angular-animate
+  * angular-aria
+  * angular-cookies
+  * angular-messages
+  * angular-resource
+  * angular-sanitize
+
+<blockquote style="font-size:18pt;">All of these can be updated with `bower update` as new versions of AngularJS are released.</blockquote>
+
+
+----
+
+## Configuration
+Yeoman generated projects can be further tweaked according to your needs by modifying project files appropriately.
+
+
+----
+
+### Output
+- You can change the `app` directory by adding an `appPath` property to `bower.json`. For instance, if you wanted to easily integrate with Express.js, you could add the following:
+
+```json
+{
+  "name": "yo-test",
+  "version": "0.0.0",
+  ...
+  "appPath": "public"
+}
+
+```
+- This will cause Yeoman-generated client-side files to be placed in `public`.
+
+
+
+----
+### Output
+- Note that you can also achieve the same results by adding an `--appPath` option when starting generator:
+```bash
+yo angular [app-name] --appPath=public
+```
+
+----
+
+## Testing
+
+Running
+```bash
+grunt test
+```
+will run the unit tests with karma.

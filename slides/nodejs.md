@@ -293,7 +293,7 @@ nsp audit-shrinkwrap
   connect    2.7.5    >=2.8.1  nodesecurity-jobs > kue > express
 ```
 
----
+----
 ## Mon premier programme en Node.js
 
 ```js

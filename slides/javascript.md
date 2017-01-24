@@ -662,39 +662,41 @@ alex.sayHello();
 ```js
 var obj = document.getElementById("idelement") ;
 ```
+
 - Il est ainsi possible d'avoir des informations et d'agir sur l'élément
  - **innerHTML** : va recupérer/modifier le contenu HTML de l'élément
  - **textContent** : va recupérer/modifier le contenu de l'élément
  - **nodeName** : va recupérer le nom de l'élément
- - **nodeType** : va recupérer le type de l'élément
+
+----
+
+## An example
+
+```html
+<div id="div1"></div>
+<input type="button" value="Vert" onclick="vert();"/>
+<input type="button" value="Rouge" onclick="rouge();"/>
+```
 
 ----
 ## An example
- <pre><code class="hljs html" data-trim contenteditable>
-<div id="div1"></div>
-<input type="button" value="Vert" onclick="vert();" />
-<input type="button" value="Rouge" onclick="rouge();" />
- </code></pre>
 
------
- ## An example
-
- <pre><code class="hljs css" data-trim contenteditable>
+```css
  #div1{
    background-color:#ff0000;
    width:200px;
    height:200px;
  }
- </code></pre>
+```
 
------
+----
 ## An example
 
- <pre><code class="hljs js" data-trim contenteditable>
- function vert(){
-     document.getElementById('div1').style.backgroundColor='#00ff00';
- }
- function rouge(){
-     document.getElementById('div1').style.backgroundColor='#ff0000';
- }
- </code></pre>
+```js
+function vert(){
+   document.getElementById('div1').style.backgroundColor='#00ff00';
+}
+function rouge(){
+   document.getElementById('div1').style.backgroundColor='#ff0000';
+}
+```

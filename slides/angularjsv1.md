@@ -556,7 +556,7 @@ ng-change="{string}"
 ## What is ng-form?
 - Angular UI has some extensions
 - AngularAgility - FormExtensions makes it easier
-- [demo](http://angularagility.herokuapp.com/#/formExtensions/formExtensions/basic)
+  - [demo](http://angularagility.herokuapp.com/#/formExtensions/formExtensions/basic)
 
 ----
 ## AngularJS is pure JavaScript

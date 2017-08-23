@@ -2,8 +2,10 @@
     "index.md",
     "plan.md",
     "javascript.md",
-    "tooling.md",
     "nodejs.md",
+    "tooling.md",
     "typescript.md",
-    "angularjsv1.md"
+    "angularjsv1.md",
+    "vue.md",
+    "angular2.md"
 ]

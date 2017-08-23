@@ -701,3 +701,32 @@ function rouge(){
    document.getElementById('div1').style.backgroundColor='#ff0000';
 }
 ```
+
+----
+## JSON
+
+- JSON stands for JavaScript Object Notation
+- JSON is a lightweight data-interchange format
+- JSON is "self-describing" and easy to understand
+- JSON is language independent *
+- Key-value pairs
+
+----
+## JSON
+
+- JSON uses JavaScript syntax, but the JSON format is text only.
+- Text can be read and used as a data format by any programming language.
+- The JSON format was originally specified by Douglas Crockford.
+
+----
+## JSON sample
+
+```js
+{
+    "id": 1,
+    "name": "A green door",
+    "price": 12.50,
+    "tags": ["home", "green"]
+}
+
+```

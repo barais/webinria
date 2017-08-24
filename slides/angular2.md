@@ -246,6 +246,25 @@ style="position:absolute; left:400px; top:250px;">
 
 
 ----
+## Component interaction
+
+<div align="center"><img src="resources/angular2/img11.png" width="100%"></div>
+
+----
+## Component interaction
+
+<div align="center"><img src="resources/angular2/img12.png" width="100%"></div>
+
+
+----
+## Component interaction
+
+
+> “Inputs”, as you might guess from the hierarchy discussion above, specifies which properties you can set on a component whereas “outputs” identifies the events a component can fire to send information up the hierarchy to its parent.
+
+
+
+----
 ## Example: component
 
 ```ts

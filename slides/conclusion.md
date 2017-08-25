@@ -22,3 +22,52 @@
 ----
 ## Other remarks
 You can use [surge.sh](https://surge.sh/) for deploying your SPA.
+
+----
+## Hybrid development
+- Build apps with web tech you know and love
+- Ionic (AgularJS 2)
+- ReactNative
+- OnSen UI (Framework agnostic)
+ - Written in pure JavaScript.
+ - Support JQuery, AngularJS, AngularJS 2, React, Vue
+
+
+----
+
+ ### Hybrid development (Apache cordova)
+
+ <div align="center"><img src="resources/hybrid2.png" width="100%"></div>  
+
+----
+
+   <div align="center"><img src="resources/hybrid3.png" width="75%"></div>  
+
+
+----
+### Ionic architecture
+
+<div align="center"><img src="resources/hybrid.jpg" width="100%"></div>  
+
+----
+
+ ### OnSen architecture
+
+ <div align="center"><img src="resources/hybrid1.png" width="100%"></div>  
+
+
+----
+
+### Links
+
+- https://vuejs.org/
+- https://facebook.github.io/react/
+- https://angular.io/
+- https://angularjs.org/
+- http://getbootstrap.com/
+- https://jquery.com/
+- https://facebook.github.io/react-native/
+- https://ionicframework.com/
+- https://cordova.apache.org/
+- https://onsen.io/
+- https://books.ninja-squad.com/

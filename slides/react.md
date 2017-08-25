@@ -337,6 +337,7 @@ Because the DOM is slow!
 - Running the whole app in a Web Worker
 
 ----
+
 ## Other concepts
 
 
@@ -359,7 +360,9 @@ ReactDOM.render(
 ```
 
 ----
+
 ### State
+
 ```js
 class Clock extends React.Component {
   constructor(props) {
@@ -387,7 +390,9 @@ ReactDOM.render(
 );
 
 ```
+
 ----
+
 ## Component Lifecycle
 - Mounting
 - Updating
@@ -415,6 +420,7 @@ ReactDOM.render(
 1. componentWillUnmount()
 
 ----
+
 # Rule 4: a flow is unidirectional.
 
 All data flows down the component hierarchy

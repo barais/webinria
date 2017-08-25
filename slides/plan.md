@@ -5,8 +5,11 @@
 - Outillage
 - Nodejs
 - TypeScript
-- Utilisation de framework : AngularJS
-- Une autre vision GWT
+- Utilisation de frameworks : AngularJS
+- Utilisation de frameworks : Vue.js
+- Utilisation de frameworks : AngularJS 2
+- Utilisation de frameworks : React
+- Conclusion
 
 ----
 

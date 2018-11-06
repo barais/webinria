@@ -10,7 +10,7 @@
 ## Methodology
 - Start With A Mock
 - Step 1: Break The UI Into A Component Hierarchy
-- Step 2: Build A Static Version in React, Vue.js, Angular 2
+- Step 2: Build A Static Version in React, Vue.js, Angular 
 - Step 3: Identify The Minimal (but complete) Representation Of UI State
 - Step 4: Identify Where Your State Should Live
 - Step 5: Design your data-flow and the interactions between components
@@ -26,11 +26,11 @@ You can use [surge.sh](https://surge.sh/) for deploying your SPA.
 ----
 ## Hybrid development
 - Build apps with web tech you know and love
-- Ionic (AgularJS 2)
+- Ionic (Agular)
 - ReactNative
 - OnSen UI (Framework agnostic)
  - Written in pure JavaScript.
- - Support JQuery, AngularJS, AngularJS 2, React, Vue
+ - Support JQuery, AngularJS, Angular, React, Vue
 
 
 ----

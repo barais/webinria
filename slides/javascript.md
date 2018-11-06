@@ -8,7 +8,6 @@
 - Syntaxe
 - Les objets
 - Les évènements
-- Les boîtes de dialogue
 - Accès à un élément quelconque d'une page
 
 ----
@@ -17,7 +16,6 @@
 
 - Mais à quoi ça sert ?
   - Manipulation et animation dynamiques du contenu des pages Web
-  - Ouverture, fermeture de fenêtres
   - Communication avec « le » serveur
     - Warning : cross-domain scripting
   - Enregistrement des actions de l'utilisateur (!)
@@ -34,65 +32,13 @@
 - Le JavaScript est une extension du langage HTML.
 
 ----
-## Popularité de JavaScript (1)
-
-- JavaScript, le langage de programmation populaire avec la plus importante progression (mais pas le plus grand nombre de lignes de code déployées)
-- JavaScript langage de l'année 2014 et 2015 selon  l'Index TIOBE (nombre de développeurs + nombre de tutoriaux + nombre de vendeurs tiers, sur la base des recherches dans les moteurs Google, Bing, Yahoo!, Wikipedia, Amazon, YouTube et Baidu)
-
-<div align="right"><img src="resources/image_3.png" width="10%"></div>
-
-----
-## Popularité de JavaScript (2)
-
-<div align="center"><img src="resources/image_4.png" width="80%"></div>
-
-http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html
-
-----
-## Popularité de JavaScript (3)
-
-- Autres indicateurs de popularité :
-  - GitHub (plus nombre de dépôts de source avec JavaScript et plus projets JavaScript les plus populaires)
-   - http://adambard.com/blog/top-github-languages-2014/
-   - http://redmonk.com/sogrady/2014/01/22/language-rankings-1-14/
-   - http://www.thoughtworks.com/radar/
-   - http://pypl.github.io/PYPL.html
-
-----
-  <div align="center"><img src="resources/image_5.png" width="65%"></div>
-
-  https://github.com/search?q=stars%3A%3E1&s=stars&type=Repositories
-
-----
-## Popularité de JavaScript (4)
+## Popularité de JavaScript
 
 - JavaScript présent dans tous les navigateurs web avec maintenant des implémentations à jour
-- ECMAScript 6 disponible et implémentation progressive dans les différents moteurs
+- ECMAScript 6 disponible et implémentation dans les différents moteurs
 - Node.js et NPM à la base du nouveau succès de JavaScript (après avoir été le langage le plus détesté)
 - Le plus de modules tiers disponibles grâce à NPM et GitHub. Il existe un module JavaScript existant pour quasiment chaque besoin, ou bien il est en train d'être écrit !
 
-----
-## Popularité de JavaScript (5)
-
-http://modulecounts.com/
-<div align="center"><img src="resources/image_6.png" width="85%"></div>
-
-----
-## Node.js choisi par les entreprises du web
-
-- Plus de téléchargements des modules NPM durant la semaine que le week-end et les vacances
-- Les modules JavaScript sont plus utilisés et développés dans le cadre des entreprises que dans le cadre des loisirs
-- Node.js utilisé en production par Dow Jones, eBay, Walmart, PayPal, LinkedIn, Yahoo!, The New York Times, Über, Airbnb, Groupon, SAP, Rakuten, TF1, Google
-- Node.js supporté officiellement par Oracle (http://nodejs.org/industry/)
-
-----
-## D'autres choix
-
-- D'autres acteurs n'utilisent pas Node.js côté serveur :
-  - Chez Twitter c'est du Java (après avoir débuté avec du Ruby On Rails)
-  - Chez Facebook c'est du Hack (un nouveau PHP)
-  - Chez GitHub c'est du Ruby On Rails et du Erlang
-  - Google utilise d'autres langages que JavaScript et d'autres plateformes que Node.js : notamment Go (en remplacement de C++)
 
 ----
   ## Ubiquité
@@ -104,26 +50,6 @@ http://modulecounts.com/
  - Sur serveur et poste développeur pour scripts/batches systèmes (export CSV, transformation/conversion de données, etc.)
  - Sur serveur et poste développeur pour scripts web (SlimerJS, PhantomJS, etc.)
 
-
-----
- ## JavaScript
-- Spécification de référence: ECMAScript-262 (édition 6.0 – 2015)
--  Fonctionnalités additionnelles incompatibles
-- Caractéristiques :
- - Langage interprété
- - moteur intégré dans les navigateurs
- - Basé objet mais orienté prototype
- - Dynamique (typage, fonctions, code...)
- - Événementiel
-
-
-----
-## ECMAScript 6
-
-- La spécification ECMAScript 6 est aussi appelée ES6, Harmony ou ES.next
-- Finalisation de la spécification Juin 2015
-- Les différents moteurs JavaScript implémentent  déjà progressivement ECMAScript 6 depuis des années en évoluant en même temps que la spec
-- Apporte ce qui manquait à JavaScript pour faciliter la vie des développeurs (et qu'on pouvait déjà trouver dans d'autres langages comme Python, Java, etc.) : modules, collections, template strings, iterateurs, générateurs, etc.
 
 ----
 ## JavaScript
@@ -139,18 +65,6 @@ http://modulecounts.com/
  - Attente” puis réaction aux actions “utilisateur”
 
 
-----
-### Définition
-
-** Javascript **	| ** Java**
--- | --
-Langage interprété		|  Langage compilé
-Code intégré au HTML		|  Code (applet)
-Langage peu typé		| Langage fortement typé
-Liaisons dynamiques: les références des objets sont vérifiées au chargement		|  Liaisons statiques: Les objets doivent exister au chargement (compilation)
-Accessibilité du code		|  Confidentialité du code
-Sûr: ne peut pas écrire sur le disque dur		|  Sûr: ne peut pas écrire sur le disque dur
-
 
 ----
 ## JavaScript
@@ -159,7 +73,6 @@ Sûr: ne peut pas écrire sur le disque dur		|  Sûr: ne peut pas écrire sur le
 - **Syntaxe**
 - Les objets
 - Les évènements
-- Les boîtes de dialogue
 - Accès à un élément quelconque d'une page
 
 ----
@@ -488,7 +401,6 @@ alert(sum(1, 2, 4));
 - Syntaxe
 - **Les objets**
 - Les évènements
-- Les boîtes de dialogue
 - Accès à un élément quelconque d'une page
 
 ----
@@ -582,7 +494,6 @@ alex.sayHello();
 - Syntaxe
 - Les objets
 - **Les évènements**
-- Les boîtes de dialogue
 - Accès à un élément quelconque d'une page
 
 ----
@@ -622,30 +533,7 @@ alex.sayHello();
  }
  ```
 
-----
 
-## JavaScript
-- Définition
-- Syntaxe
-- Les objets
-- Les évènements
-- **Les boîtes de dialogue**
-- Accès à un élément quelconque d'une page
-
-----
-### Les boîtes de dialogue
-- Il existe 3 types de boîtes de dialogue:
- - alert : affiche un message et un bouton ok
-<div align="center"> <img src="resources/image_8.png" width="35%"></div>
- - confirm : affiche un message et un bouton ok et annuler
- <div align="center"> <img src="resources/image_9.png" width="35%"></div>
-
-----
- ### Les boîtes de dialogue
-- prompt : affiche une zone de saisie et un bouton ok.
- <div align="center"> <img src="resources/image_10.png" width="35%"></div>
-- confirm retournera true ou false selon la réponse (ok ou annuler).
-- prompt retournera le message contenu dans la zone de saisie.
 
 ----
 ## JavaScript
@@ -653,7 +541,6 @@ alex.sayHello();
 - Syntaxe
 - Les objets
 - Les évènements
-- Les boîtes de dialogue
 - **Accès à un élément quelconque d'une page**
 
 ----
@@ -730,3 +617,9 @@ function rouge(){
 }
 
 ```
+
+----
+
+# Ecmascript 2015, es6
+
+[new features](http://es6-features.org)

@@ -35,9 +35,9 @@
 
 ```ts
 // jsfunction
-f(x, y) {   return x * y;}
+f(x, y) { return x * y;}
 // tsfunction
-f(x : number, y : number) : number {    return x * y;}
+f(x : number, y : number) : number { return x * y;}
 // Type information is enforced in design and
 // compile time, but removed at runtime
 ```

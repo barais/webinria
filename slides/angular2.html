@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <div align="center"><img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/AngularJS_logo.svg_-650x4011.png" width="70%"></div>
+<h3 id="a-complete-rewrite">A complete rewrite</h3>
+<hr>
+<h2 id="early-web">Early Web</h2>
+<ul>
+<li>Web designed for documents</li>
+<li>Server creates pages / browser displays</li>
+<li>Data input sent to and processed by the server</li>
+<li>Updated pages created on the server and resent</li>
+</ul>
+<hr>
+<h2 id="first-example---php">First Example - PHP</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"hello.php"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"yourName”&gt;
+    &lt;input type="</span><span class="hljs-attr">submit</span>" <span class="hljs-attr">value</span>=<span class="hljs-string">"Say Hello"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+<span class="php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;h1&gt;Hello "</span>.$HTTP_POST_VARS[<span class="hljs-string">"yourName"</span>].<span class="hljs-string">"!&lt;/h1&gt;"</span>;  
+<span class="hljs-meta">?&gt;</span></span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="web-evolution---ajax">Web Evolution - AJAX</h2>
+<ul>
+<li>Interactive client-side web
+<ul>
+<li>Collect input from user</li>
+<li>Update display</li>
+<li>Communicate with server</li>
+</ul>
+</li>
+<li>Client-side processing enabled by
+<ul>
+<li>JavaScript</li>
+<li>DOM manipulation</li>
+<li>HTTP server messaging</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="first-example---jquery">First Example - jQuery</h2>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://code.jquery.com/jquery-1.9.1.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">                                         
+   $(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+     $(<span class="hljs-string">"#yourName"</span>).keyup(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+       $(<span class="hljs-string">"#helloName"</span>).text(<span class="hljs-string">"Hello "</span> + <span class="hljs-keyword">this</span>.value + <span class="hljs-string">"!"</span>);
+     });
+   });                                    
+ </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"yourName"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"helloName"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="jquery">jQuery</h2>
+<ul>
+<li>Simplifies event binding and DOM manipulation</li>
+<li>Common API across multiple browsers</li>
+<li>Supports plug-in modules to extend functionality</li>
+<li>Requires writing JavaScript code to wire</li>
+</ul>
+<hr>
+<h2 id="todays-web--can-we-do-better">Today’s Web – Can we do better?</h2>
+<ul>
+<li>Follow good programming practices
+<ul>
+<li>Separate: data / display / processing</li>
+<li>Simplify connecting data to display</li>
+</ul>
+</li>
+<li>Let us focus on the technologies of the web
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="first-example---angular">First Example - Angular</h2>
+<p><a href="sample/sample1.html">sample</a></p>
+<hr>
+<h2 id="imperative-vs-declarative">Imperative vs. Declarative</h2>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"yourName"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"helloName"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+  $(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    $(<span class="hljs-string">"#yourName"</span>).keyup(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      $(<span class="hljs-string">"#helloName"</span>).text(<span class="hljs-string">"Hello "</span> + <span class="hljs-keyword">this</span>.value + <span class="hljs-string">"!"</span>);
+    });
+  });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+<p>to Angular declarative relationships</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"yourName"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello {{yourName}}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="abstractions">Abstractions</h2>
+<ul>
+<li>jQuery abstracts browser functionality
+<ul>
+<li>e.g. DOM traversal, event binding</li>
+</ul>
+</li>
+<li>AngularJS/Angular abstracts relationships (and more)</li>
+</ul>
+<blockquote>
+<p>AngularJS/Angular, and all web apps, are built on browser functionalities</p>
+</blockquote>
+<hr>
+<h2 id="the-dom-abstraction">The DOM abstraction</h2>
+<ul>
+<li>HTML is a declarative document language</li>
+<li>Browser translates HTML into a Document Object Model (DOM)</li>
+<li>DOM is the browser’s in-memory document representation</li>
+<li>JavaScript can manipulate the DOM</li>
+</ul>
+<hr>
+<h2 id="angularjs-compiles-html">AngularJS &quot;<em>compiles</em>&quot; HTML</h2>
+<ul>
+<li>Browsers send a document (i.e. DOM) ready event</li>
+<li>AngularJS can intercede and rewrite the DOM</li>
+<li>The rewrite is driven by markup in the DOM</li>
+</ul>
+<hr>
+<p>Model-View-Controller (MVC)</p>
+<ul>
+<li>
+<p>Software architectural pattern</p>
+<ul>
+<li>Separates display from data</li>
+<li>Originated with Smalltalk programmers</li>
+<li>From work at <a href="http://heim.ifi.uio.no/~trygver/themes/mvc/mvc-index.html">Xerox PARC</a> in the late 70’s</li>
+</ul>
+</li>
+<li>
+<p>Models represent knowledge</p>
+</li>
+<li>
+<p>Views provide a (visual) representation of attached model data</p>
+</li>
+<li>
+<p>Controllers connect to and control views and models</p>
+</li>
+</ul>
+<hr>
+<h2 id="mvc-and-variations">MVC and Variations</h2>
+<ul>
+<li>Different variations of the pattern</li>
+<li>Model-View-ViewModel (MVVM)</li>
+<li>Model-View-Presenter (MVP)</li>
+<li>Variations differ on…
+<ul>
+<li>connectivity</li>
+<li>cardinality</li>
+<li>directionality</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="model-view-whatever">Model-View-Whatever</h2>
+<div style="center"><font size="5">" <b>MVC vs MVVM vs MVP</b>. What a controversial topic that many developers can spend hours and hours debating and arguing about. For several years AngularJS was closer to <b>MVC</b> (or rather one of its client-side variants), but over time and thanks to many refactorings and api improvements, it's now closer to <b>MVVM – the $scope object could be considered the ViewModel</b> that is being decorated by a function that we call a Controller.<BR>
+…<BR>
+<b>I hereby declare AngularJS to be MVW framework - Model-View-Whatever.<b><BR>
+…"<BR></font></div>
+<font size="5">Igor Minar – Google AngularJS Development Team</font>
+<hr>
+<h2 id="summary-what-is-angularjs">Summary what is  AngularJS?</h2>
+<ul>
+<li>An MVC framework for <strong>efficiently</strong> creating dynamic views in a web browser (using HTML and JavaScript)</li>
+<li>Some highlights/focuses:
+<ul>
+<li>Complete application framework</li>
+<li>From <em>jQuery replacement</em> to a massive <em>enterprise</em> <strong>Single Page Application (SPA)</strong></li>
+<li>Fully dynamic MVVM with POJOs</li>
+<li>Low level-DOM manipulation/markup invention with directives and templates</li>
+<li>AJAX / REST API interaction</li>
+<li>Code organization, dependency injection, testability</li>
+<li>Comprehensive SPA and routing support</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="why-complete-rewrite">Why complete rewrite?</h2>
+<ul>
+<li>JavaScript is more matured now</li>
+<li>Typescript is more mature now</li>
+<li>Browsers are more matured now</li>
+<li>Performance improvements</li>
+<li>Saying bye to some of old friends (scope, modules, DDO, controllers, jqLite)</li>
+<li>And several other reasons…</li>
+</ul>
+<hr>
+<h2 id="angularjs">Angularjs</h2>
+<ul>
+<li>Open source</li>
+<li>Maintained by google and community</li>
+<li>Frontend framework</li>
+<li>Adjusts and adapts traditional HTML in order to present dynamic content through the two way data biding which allows instantaneous synchronization of views and models.</li>
+</ul>
+<hr>
+<h2 id="angularjs-2">Angularjs 2</h2>
+<ul>
+<li>Release in September 2016</li>
+<li>Using TypeScript</li>
+<li>Many modern browsers support it (Even IE9)</li>
+</ul>
+<hr>
+<h2 id="typescript">Typescript</h2>
+<ul>
+<li>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript</li>
+<li>Optional tipization and object oriented</li>
+<li>Supports ECMAScript 2015 features like async functions and decorators</li>
+<li>October 2012 (v0.8) Microsoft-a</li>
+</ul>
+<hr>
+<h2 id="typescript">Typescript</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">class</span> Student {
+    fullName: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> firstName, <span class="hljs-keyword">public</span> middleInitial, <span class="hljs-keyword">public</span> lastName</span>) {
+        <span class="hljs-keyword">this</span>.fullName = firstName + <span class="hljs-string">" "</span> + middleInitial + <span class="hljs-string">" "</span> + lastName;
+    }
+}
+
+<span class="hljs-keyword">interface</span> Person {
+    firstName: <span class="hljs-built_in">string</span>;
+    lastName: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greeter</span>(<span class="hljs-params">person : Person</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + person.firstName + <span class="hljs-string">" "</span> + person.lastName;
+}
+
+<span class="hljs-keyword">var</span> user = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">"Jane"</span>, <span class="hljs-string">"M."</span>, <span class="hljs-string">"User"</span>);
+
+<span class="hljs-built_in">document</span>.body.innerHTML = greeter(user);
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>TypeScript Greeter<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"greeter.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="typescript">Typescript</h2>
+<ul>
+<li>Additional functionalities
+<ul>
+<li>Modules, classes, interfaces, “arrow” syntaks, namespaces, enumerated types</li>
+</ul>
+</li>
+<li>Weakly or dynamically typed (:any)</li>
+<li>Strongly typed (:string, :number, :Class)</li>
+</ul>
+<hr>
+<h2 id="angular-2-core-change-detection">Angular 2 Core: Change Detection</h2>
+<ul>
+<li>Unidirectional tree based change detection</li>
+<li>Unidirectional flow is a win for performance</li>
+<li>Change detection works with:
+<ul>
+<li>Plain JS Objects</li>
+<li>Immutable Objects</li>
+<li>Observable objects</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="big-picture">Big picture</h2>
+<div align="center"><img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img1.png" width="100%"></div>
+<hr>
+<h2 id="angularjs-2">Angularjs 2</h2>
+<ul>
+<li><strong>Modules</strong>
+<ul>
+<li>Contains parts of the application which we export</li>
+</ul>
+</li>
+<li><strong>Components</strong>
+<ul>
+<li>Application logic which controls parts of the user interface</li>
+</ul>
+</li>
+<li><strong>Templates</strong>
+<ul>
+<li>Renders the component on the page</li>
+</ul>
+</li>
+<li><strong>Metadata</strong>
+-- Information about the angular application parts</li>
+</ul>
+<hr>
+<h2 id="modules">Modules</h2>
+<p>app/app.component.ts:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent { }
+</div></code></pre>
+<p>app/boot.ts:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {AppComponent} <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.component'</span>;
+</div></code></pre>
+<blockquote>
+<p>equivalent to decide which classes can be imported from a jar (Public Private for a module)</p>
+</blockquote>
+<p class="current-visible"
+style="position:absolute; left:670px; top:130px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img2.png" width="100%"></p>
+<hr>
+<h2 id="library-modules">Library modules</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>;
+</div></code></pre>
+<ul>
+<li>Angular apps are composed of modules.</li>
+<li>Modules export things — classes, function, values — that other modules import.</li>
+<li>We prefer to write our application as a collection of modules, each module exporting one thing.</li>
+</ul>
+<p class="current-visible"
+style="position:absolute; left:300px; top:400px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img3.png" width="100%"></p>
+<hr>
+<h2 id="component">Component</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroListComponent <span class="hljs-keyword">implements</span> OnInit {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> _service: HeroService</span>){ }
+  heroes: Hero[];
+  selectedHero: Hero;
+  ngOnInit(){
+    <span class="hljs-keyword">this</span>.heroes = <span class="hljs-keyword">this</span>._service.getHeroes();
+  }
+  selectHero(hero: Hero) { <span class="hljs-keyword">this</span>.selectedHero = hero; }
+}
+</div></code></pre>
+<p>app/hero-list.component.ts</p>
+<p class="current-visible"
+style="position:absolute; left:650px; top:-70px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img4.png" width="100%"></p>
+<hr>
+<h2 id="template">Template</h2>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Hero List<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span>Pick a hero from the list<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"#hero of heroes"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"selectHero(hero)"</span>&gt;</span>
+  {{hero.name}}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;<span class="hljs-name">hero-detail</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"selectedHero"</span> [<span class="hljs-attr">hero</span>]=<span class="hljs-string">"selectedHero"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hero-detail</span>&gt;</span>
+</div></code></pre>
+<p>app/hero-list.component.html</p>
+<p class="current-visible"
+style="position:absolute; left:650px; top:-70px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img5.png" width="100%"></p>
+<hr>
+<h2 id="metadata">Metadata</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">@Component</span>({
+  selector:    <span class="hljs-string">'hero-list'</span>,
+  templateUrl: <span class="hljs-string">'app/hero-list.component.html'</span>,
+  directives:  [HeroDetailComponent],
+  providers:   [HeroService]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroesComponent { ... }
+</div></code></pre>
+<ul>
+<li><strong>selector</strong> : a css selector that tells Angular to create and insert an instance of this component where it finds a <hero-list> tag in parent HTML.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">hero-list</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hero-list</span>&gt;</span>```
+  - Angular inserts an instance of the HeroListComponent view between tags.
+- **templateUrl**: the address of this component's template
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"current-visible"</span>
+<span class="hljs-attr">style</span>=<span class="hljs-string">"position:absolute; left:750px; top:-30px;"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"resources/angular2/img6.png"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100%"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+----
+## Metadata
+
+```ts
+@Component({
+  selector:    'hero-list',
+  templateUrl: 'app/hero-list.component.html',
+  directives:  [HeroDetailComponent],
+  providers:   [HeroService]
+})
+export class HeroesComponent { ... }
+</div></code></pre>
+<ul>
+<li><strong>directives</strong>: an array of the Components or Directives this template requires</li>
+<li><strong>providers</strong>: an array of dependency injection providers for services that the component requires</li>
+</ul>
+<p class="current-visible"
+style="position:absolute; left:750px; top:-30px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img6.png" width="100%"></p>
+<hr>
+<h2 id="data-binding">Data binding</h2>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{hero.name}}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hero-detail</span> [<span class="hljs-attr">hero</span>]=<span class="hljs-string">"selectedHero”&gt;&lt;/hero-detail&gt;
+&lt;div (click)="</span><span class="hljs-attr">selectHero</span>(<span class="hljs-attr">hero</span>)&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>app/hero-list.component.ts</p>
+<p class="current-visible"
+style="position:absolute; left:0px; top:250px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img7.png" width="80%"></p>
+<p class="current-visible"
+style="position:absolute; left:400px; top:250px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img8.png" width="80%"></p>
+<hr>
+<h2 id="component-interaction">Component interaction</h2>
+<div align="center"><img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img11.png" width="100%"></div>
+<hr>
+<h2 id="component-interaction">Component interaction</h2>
+<div align="center"><img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img12.png" width="100%"></div>
+<hr>
+<h2 id="component-interaction">Component interaction</h2>
+<blockquote>
+<p>“Inputs”, as you might guess from the hierarchy discussion above, specifies which properties you can set on a component whereas “outputs” identifies the events a component can fire to send information up the hierarchy to its parent.</p>
+</blockquote>
+<hr>
+<h2 id="example-component">Example: component</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>;
+<span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'my-app'</span>,
+    template: <span class="hljs-string">'
+      &lt;h1&gt;{{title}}&lt;/h1&gt;
+      &lt;h2&gt;My favorite hero is: {{myHero}}&lt;/h2&gt;
+    '</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {
+    title = <span class="hljs-string">'Tour of Heroes'</span>;
+    myHero = <span class="hljs-string">'Windstorm'</span>;
+}
+</div></code></pre>
+<p>app.ts</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">my-app</span>&gt;</span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">my-app</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<p>index.html</p>
+<hr>
+<h2 id="example-show-the-list-of-heroes">Example: show the list of heroes</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {
+    title = <span class="hljs-string">'Tour of Heroes'</span>;
+    heroes = [<span class="hljs-string">'Windstorm'</span>, <span class="hljs-string">'Bombasto'</span>, <span class="hljs-string">'Magneta'</span>, <span class="hljs-string">'Tornado'</span>];
+    myHero = <span class="hljs-keyword">this</span>.heroes[<span class="hljs-number">0</span>];
+}
+</div></code></pre>
+<p>Component</p>
+<pre class="hljs"><code><div>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>{{title}}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>My favorite hero is: {{myHero.name}}<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Heroes:<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"#hero of heroes"</span>&gt;</span>
+      {{ hero.name }}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"heroes.length &gt; 3"</span>&gt;</span>There are many heroes!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>template</p>
+<hr>
+<h2 id="example-create-class-for-data-and-fill-it">Example: create class for data and fill it</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Hero {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">public</span> id:<span class="hljs-built_in">number</span>,
+        <span class="hljs-keyword">public</span> name:<span class="hljs-built_in">string</span></span>) { }
+  }
+</div></code></pre>
+<p>hero.ts</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {
+    title = <span class="hljs-string">'Tour of Heroes'</span>;
+    heroes = [
+        <span class="hljs-keyword">new</span> Hero(<span class="hljs-number">1</span>, <span class="hljs-string">'Windstorm'</span>),  <span class="hljs-keyword">new</span> Hero(<span class="hljs-number">13</span>, <span class="hljs-string">'Bombasto'</span>),
+        <span class="hljs-keyword">new</span> Hero(<span class="hljs-number">15</span>, <span class="hljs-string">'Magneta'</span>),  <span class="hljs-keyword">new</span> Hero(<span class="hljs-number">20</span>, <span class="hljs-string">'Tornado'</span>)
+    ];
+    myHero = <span class="hljs-keyword">this</span>.heroes[<span class="hljs-number">0</span>];
+  }
+</div></code></pre>
+<p>app.component.ts:</p>
+<hr>
+<h2 id="example-work-with-the-events">Example: work with the events</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'click-me'</span>,
+    template: <span class="hljs-string">`
+        &lt;button (click)="onClickMe()"&gt;Click me!&lt;/button&gt;
+        {{clickMessage}}`</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ClickMeComponent {
+    clickMessage = <span class="hljs-string">''</span>;
+    onClickMe() {
+        <span class="hljs-keyword">this</span>.clickMessage =<span class="hljs-string">'You are my hero!'</span>;
+    }
+}
+</div></code></pre>
+<hr>
+<h2 id="example-adding-hero-form">Example: adding hero form</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'little-tour'</span>,
+    template: <span class="hljs-string">`
+      &lt;input #newHero
+          (keyup.enter)="addHero(newHero.value)"
+          (blur)="addHero(newHero.value); newHero.value='' "&gt;
+      &lt;button (click)=addHero(newHero.value)&gt;Add&lt;/button&gt;
+      &lt;ul&gt;&lt;li *ngFor="#hero of heroes"&gt;{{hero}}&lt;/li&gt;&lt;/ul&gt;
+    `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LittleTourComponent {
+    heroes=[<span class="hljs-string">'Windstorm'</span>, <span class="hljs-string">'Bombasto'</span>, <span class="hljs-string">'Magneta'</span>, <span class="hljs-string">'Tornado'</span>];
+    addHero(newHero:<span class="hljs-built_in">string</span>) {
+        <span class="hljs-keyword">if</span> (newHero) {
+            <span class="hljs-keyword">this</span>.heroes.push(newHero);
+        }
+    }
+}
+</div></code></pre>
+<hr>
+<h2 id="example-execute">Example: execute</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {bootstrap}    <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/platform/browser'</span>
+<span class="hljs-keyword">import</span> {AppComponent} <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.component'</span>
+bootstrap(AppComponent);
+</div></code></pre>
+<p>boot.ts</p>
+<pre class="hljs"><code><div>	name, version
+	dependencies (SystemJS is used as module system)
+	devDependencies
+</div></code></pre>
+<p>package.json</p>
+<pre class="hljs"><code><div>	TypeScript configuration
+</div></code></pre>
+<p>tsconfig.json</p>
+<pre class="hljs"><code><div>npm start
+</div></code></pre>
+<hr>
+<h2 id="binding-in-templates">Binding in templates</h2>
+<table>
+<thead>
+<tr>
+<th>Data Direction</th>
+<th>Syntax</th>
+<th>Binding Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One way from data <BR> source to view target</td>
+<td><p  style = "font-size:25px">{{expression}} <BR> [target] = &quot;expression&quot;  <BR> bind-target = &quot;expr&quot; </p></td>
+<td><p  style = "font-size:25px"> Interpolation <BR> Property <BR> Attribute <BR> Class <BR> Style</p></td>
+</tr>
+<tr>
+<td>One way from view <BR> target to data source</td>
+<td><p  style = "font-size:25px">(target) = &quot;expression&quot;  <BR> on-target = &quot;expr&quot; </p></td>
+<td><p  style = "font-size:25px"> Event</p></td>
+</tr>
+<tr>
+<td>Two way</td>
+<td><p  style = "font-size:25px">[(target)] = &quot;expr&quot; <BR> bindon-target = &quot;expr&quot;  </p></td>
+<td><p  style = "font-size:25px">Two-way</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="binding-targets">Binding targets</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Binding Type</th>
+<th>Target</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Property</td>
+<td><p  style = "font-size:25px"> Element Property <BR> Component Property <BR> Directive property</p></td>
+<td><p  style = "font-size:20px"> <code>&lt;img [src] = &quot;heroImageUrl&quot;&gt;</code></p> <p  style = "font-size:20px"> <code>&lt;hero-detail [hero]=&quot;currentHero&quot;&gt;&lt;/hero-detail&gt;</code></p> <p  style = "font-size:20px"> <code>&lt;div [ngClass] = &quot;{selected: isSelected}&quot;&gt;&lt;/div&gt;</code> </p></td>
+</tr>
+<tr>
+<td style="text-align:right">Event</td>
+<td><p  style = "font-size:25px"> Element Event <BR> Component Event <BR> Directive Event</p></td>
+<td><p  style = "font-size:20px"> <code>&lt;button (click) = &quot;onSave()&quot;&gt;Save&lt;/button&gt;</code></p> <p  style = "font-size:20px"> <code>&lt;hero-detail (deleted)=&quot;onHeroDeleted()&quot;&gt; &lt;/hero-detail&gt;</code></p> <p  style = "font-size:20px"> <code>&lt;div myClick(myClick)=&quot;clicked=$event&quot;&gt;click me&lt;/div&gt;</code></p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="binding-targets">Binding targets</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Binding Type</th>
+<th>Target</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Two-way</td>
+<td><p  style = "font-size:25px"> Directive <BR> Event Property </p></td>
+<td><p  style = "font-size:20px"> <code>&lt;input [(ngModel)]=&quot;heroName&quot;&gt;</code></p></td>
+</tr>
+<tr>
+<td style="text-align:right">Attribute</td>
+<td><p  style = "font-size:25px"> Attribute (the exception)</p></td>
+<td><p  style = "font-size:20px"> <code>&lt;button [attr.aria-label]=&quot;help&quot;&gt; help &lt;/button&gt;</code></p></td>
+</tr>
+<tr>
+<td style="text-align:right">Class</td>
+<td><p  style = "font-size:25px">class Property</p></td>
+<td><p  style = "font-size:20px"> <code>&lt;div [class.special]=&quot;isSpecial&quot;&gt; Special &lt;/div&gt;</code></p></td>
+</tr>
+<tr>
+<td style="text-align:right">Style</td>
+<td><p  style = "font-size:25px">style Property</p></td>
+<td><p  style = "font-size:20px"> <code>&lt;button [style.color] = &quot;isSpecial ? 'red' : 'green'&quot;&gt;</code></p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="dependency-injection">Dependency Injection</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> _service: HeroService</span>) { ... }
+</div></code></pre>
+<p>But how Injector get to know about service?</p>
+<p>2 ways:</p>
+<pre class="hljs"><code><div>bootstrap(AppComponent, [HeroService, Logger]);
+</div></code></pre>
+<p>app/boot.ts</p>
+<pre class="hljs"><code><div>  <span class="hljs-meta">@Component</span>({
+     providers:   [HeroService]
+  })
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroesComponent { ... }
+</div></code></pre>
+<p>app/hero-list.component.ts</p>
+<p style = "font-size:25px">(we get a new instance of the service with each new instance of that component)</p>
+<p class="current-visible"
+style="position:absolute; left:700px; top:50px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img9.png" width="70%"></p>
+<hr>
+<h2 id="example-define-mock-heroservice">Example: define mock HeroService</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {HEROES} <span class="hljs-keyword">from</span> <span class="hljs-string">'./mock-heroes'</span>;
+<span class="hljs-keyword">import</span> {Injectable} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>;
+
+<span class="hljs-meta">@Injectable</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroService {
+    getHeroes() {
+        <span class="hljs-keyword">return</span> HEROES;
+    }
+}
+</div></code></pre>
+<p>hero.service.ts:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Hero} <span class="hljs-keyword">from</span> <span class="hljs-string">'./hero'</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> HEROES: Hero[] = [
+    {<span class="hljs-string">"id"</span>: <span class="hljs-number">11</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">"Mr. Nice"</span>},
+    {<span class="hljs-string">"id"</span>: <span class="hljs-number">12</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">"Narco"</span>}
+]
+</div></code></pre>
+<p>mock-heroes.ts</p>
+<hr>
+<h3 id="example-define-heroservice-with-promises">Example: define HeroService with promises</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Injectable} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>;
+<span class="hljs-keyword">import</span> {Hero} <span class="hljs-keyword">from</span> <span class="hljs-string">'./hero'</span>;
+<span class="hljs-keyword">import</span> {HEROES} <span class="hljs-keyword">from</span> <span class="hljs-string">'./mock-heroes'</span>;
+
+<span class="hljs-meta">@Injectable</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroService {
+    getHeroes() {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(HEROES);
+    }
+    <span class="hljs-comment">// See the "Take it slow" appendix</span>
+    getHeroesSlowly() {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;Hero[]&gt;(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span>
+            setTimeout(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>resolve(HEROES), <span class="hljs-number">2000</span>) <span class="hljs-comment">// 2 seconds</span>
+        );
+    }
+}
+</div></code></pre>
+<hr>
+<h3 id="example-use-heroservice-in-component">Example: use HeroService in component</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Component, OnInit} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>;
+<span class="hljs-keyword">import</span> {HeroService} <span class="hljs-keyword">from</span> <span class="hljs-string">'./hero.service'</span>;
+<span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'my-app'</span>,
+    template: <span class="hljs-string">`…`</span>,
+    providers: [HeroService]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent <span class="hljs-keyword">implements</span> OnInit {
+    heroes:Hero[];
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> _heroService:HeroService</span>) { }
+    getHeroes() {
+        <span class="hljs-keyword">this</span>._heroService.getHeroes()
+		.then(<span class="hljs-function"><span class="hljs-params">heroes</span> =&gt;</span> <span class="hljs-keyword">this</span>.heroes = heroes);
+    }
+    ngOnInit() {    <span class="hljs-keyword">this</span>.getHeroes();    }
+}
+</div></code></pre>
+<hr>
+<h2 id="service">Service</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroService {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> _backend:BackendService,
+                		<span class="hljs-keyword">private</span> _logger:Logger</span>) {}
+    <span class="hljs-keyword">private</span> _heroes:Hero[] = [];
+
+    getHeroes() {
+        <span class="hljs-keyword">this</span>._backend.getAll(Hero).then(<span class="hljs-function">(<span class="hljs-params">heroes:Hero[]</span>) =&gt;</span> {
+            <span class="hljs-keyword">this</span>._logger.log(<span class="hljs-string">`Fetched <span class="hljs-subst">${heroes.length}</span> heroes.`</span>);
+            <span class="hljs-keyword">this</span>._heroes.push(...heroes); <span class="hljs-comment">// fill cache</span>
+
+        });
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._heroes;
+    }
+}
+</div></code></pre>
+<p>app/hero.service.ts</p>
+<hr>
+<h2 id="forms">Forms</h2>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"power"</span>&gt;</span>Hero Power<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span> <span class="hljs-attr">required</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">option</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"#p of powers"</span> [<span class="hljs-attr">value</span>]=<span class="hljs-string">"p"</span>&gt;</span>{{p}}<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>NgControl</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span>
+  <span class="hljs-attr">required</span>   
+  [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"model.name"</span>   
+  <span class="hljs-attr">ngControl</span>=<span class="hljs-string">"name"</span> &gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="form-validation">Form validation</h2>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Class if true</th>
+<th>Class if false</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control has been visited</td>
+<td>ng-touched</td>
+<td>ng-untouched</td>
+</tr>
+<tr>
+<td>Control's value has changed</td>
+<td>ng-dirty</td>
+<td>ng-pristine</td>
+</tr>
+<tr>
+<td>Control's value is valid</td>
+<td>ng-valid</td>
+<td>ng-invalid</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.ng-valid</span><span class="hljs-selector-attr">[required]</span> {
+   <span class="hljs-attribute">border-left</span>: <span class="hljs-number">5px</span> solid <span class="hljs-number">#42A948</span>; <span class="hljs-comment">/* green */</span>
+}
+<span class="hljs-selector-class">.ng-invalid</span> {
+   <span class="hljs-attribute">border-left</span>: <span class="hljs-number">5px</span> solid <span class="hljs-number">#a94442</span>; <span class="hljs-comment">/* red */</span>
+}
+</div></code></pre>
+<hr>
+<h2 id="show-validation-messages">Show validation messages</h2>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span> <span class="hljs-attr">required</span>
+  [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"model.name"</span>
+    <span class="hljs-attr">ngControl</span>=<span class="hljs-string">"name"</span>  #<span class="hljs-attr">name</span>=<span class="hljs-string">"ngForm"</span> &gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> [<span class="hljs-attr">hidden</span>]=<span class="hljs-string">"name.valid"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alert alert-danger"</span>&gt;</span>
+  Name is required
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="routing">Routing</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">@Component</span>({...})
+<span class="hljs-meta">@RouteConfig</span>([
+{   path: <span class="hljs-string">'/crisis-center'</span>,
+    name: <span class="hljs-string">'CrisisCenter'</span>,
+    component: CrisisListComponent },
+{   path: <span class="hljs-string">'/heroes'</span>,
+    name: <span class="hljs-string">'Heroes'</span>,
+    useAsDefault: <span class="hljs-literal">true</span>,
+    component: HeroListComponent },
+{   path: <span class="hljs-string">'/hero/:id'</span>,
+    name: <span class="hljs-string">'HeroDetail'</span>,
+    component: HeroDetailComponent }
+])
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- Routed views go here --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="routing-defining-in-main-app-component">Routing: defining in main app component</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS }
+    <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/router'</span>;
+
+<span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'my-app'</span>,
+    template: <span class="hljs-string">`
+        &lt;a [routerLink]="['Heroes']"&gt;Heroes&lt;/a&gt;
+        &lt;a [routerLink]="[’CrisisCenter']"&gt;Crisis Center&lt;/a&gt;
+        &lt;router-outlet&gt;&lt;/router-outlet&gt; `</span>,
+    directives: [ROUTER_DIRECTIVES],
+    providers: [ ROUTER_PROVIDERS, HeroService ]
+})
+<span class="hljs-meta">@RouteConfig</span>([
+    { path: <span class="hljs-string">'/heroes'</span>, name: <span class="hljs-string">'Heroes'</span>, component: HeroesComponent }
+])
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {}
+</div></code></pre>
+<hr>
+<h2 id="routing-heroes-component">Routing: heroes component</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'my-heroes'</span>,
+    templateUrl: <span class="hljs-string">'app/heroes.component.html'</span>,
+    styleUrls:  [<span class="hljs-string">'app/heroes.component.css'</span>],
+    directives: [HeroDetailComponent]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroesComponent <span class="hljs-keyword">implements</span> OnInit {
+    heroes: Hero[];
+    selectedHero: Hero;
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"> <span class="hljs-keyword">private</span> _router: Router,
+       <span class="hljs-keyword">private</span> _heroService: HeroService</span>) {}
+    getHeroes() {
+        <span class="hljs-keyword">this</span>._heroService.getHeroes().then(<span class="hljs-function"><span class="hljs-params">heroes</span> =&gt;</span>
+           <span class="hljs-keyword">this</span>.heroes = heroes);
+    }
+    ngOnInit() { <span class="hljs-keyword">this</span>.getHeroes(); }
+    onSelect(hero: Hero) { <span class="hljs-keyword">this</span>.selectedHero = hero; }
+    gotoDetail() {
+	<span class="hljs-keyword">this</span>._router.navigate([<span class="hljs-string">'HeroDetail'</span>, { id:
+                               <span class="hljs-keyword">this</span>.selectedHero.id }]);
+    }
+}
+</div></code></pre>
+<!-- .element: class="largercode" -->
+<hr>
+<h2 id="routing-heroes-template">Routing: heroes template</h2>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>My Heroes<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"heroes"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"#hero of heroes"</span>
+        [<span class="hljs-attr">class.selected</span>]=<span class="hljs-string">"hero === selectedHero"</span>
+        (<span class="hljs-attr">click</span>)=<span class="hljs-string">"onSelect(hero)"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"badge"</span>&gt;</span>{{hero.id}}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> {{hero.name}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"selectedHero"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>
+        {{selectedHero.name | uppercase}} is my hero
+    <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"gotoDetail()"</span>&gt;</span>View Details<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p class="current-visible"
+style="position:absolute; left:700px; top:250px;">
+<img src="file:///home/barais/SparkleShare/SECourseBarais/SIR/prof/cours/web.inria/resources/angular2/img10.png" width="80%"></p>
+<hr>
+<h2 id="routing-hero-details-component">Routing: hero details component</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'my-hero-detail'</span>,
+    templateUrl: <span class="hljs-string">'app/hero-detail.component.html'</span>,
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroDetailComponent <span class="hljs-keyword">implements</span> OnInit {
+    hero: Hero;
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">private</span> _heroService: HeroService,
+        <span class="hljs-keyword">private</span> _routeParams: RouteParams</span>) {
+    }
+    ngOnInit() {
+        <span class="hljs-keyword">let</span> id = +<span class="hljs-keyword">this</span>._routeParams.get(<span class="hljs-string">'id'</span>);
+        <span class="hljs-keyword">this</span>._heroService.getHero(id)
+            .then(<span class="hljs-function"><span class="hljs-params">hero</span> =&gt;</span> <span class="hljs-keyword">this</span>.hero = hero);
+    }
+}
+</div></code></pre>
+<p>app/hero-detail.component.html</p>
+<hr>
+<h2 id="routing-hero-details-template">Routing: hero details template</h2>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"hero"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>{{hero.name}} details!<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>id: <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>{{hero.id}}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>name: <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"hero.name"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"name"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"goBack()"</span>&gt;</span>Back<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>hero-detail.component.html</p>
+<hr>
+<h2 id="using-pipes">Using pipes</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>
+
+<span class="hljs-meta">@Component</span>({
+    selector: <span class="hljs-string">'hero-birthday'</span>,
+    template: <span class="hljs-string">`&lt;p&gt;The hero's birthday is
+               {{ birthday | date }}&lt;/p&gt;`</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroBirthday {
+    birthday = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">1988</span>,<span class="hljs-number">3</span>,<span class="hljs-number">15</span>); <span class="hljs-comment">// April 15, 1988</span>
+}
+</div></code></pre>
+<hr>
+<h2 id="define-custom-pipe">Define custom pipe</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Pipe} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>;
+
+<span class="hljs-comment">/* Raise the value exponentially
+* Takes an exponent argument that defaults to 1.
+* Usage: value | exponentialStrength:exponent
+* Example:
+*   {{ 2 |  exponentialStrength:10}}
+*   formats to: 1024
+*/</span>
+<span class="hljs-meta">@Pipe</span>({name: <span class="hljs-string">'exponentialStrength'</span>})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ExponentialStrengthPipe {
+  transform(value:<span class="hljs-built_in">number</span>, args:<span class="hljs-built_in">string</span>[]) : <span class="hljs-built_in">any</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.pow(value, <span class="hljs-built_in">parseInt</span>(args[<span class="hljs-number">0</span>] || <span class="hljs-string">'1'</span>, <span class="hljs-number">10</span>));
+  }
+} 
+</div></code></pre>
+<hr>
+<h2 id="use-custom-pipe">Use custom pipe</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>;
+<span class="hljs-keyword">import</span> {ExponentialStrengthPipe} <span class="hljs-keyword">from</span> <span class="hljs-string">'./exponential-strength.pipe'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'power-booster'</span>,
+  template: <span class="hljs-string">`
+    &lt;h2&gt;Power Booster&lt;/h2&gt;
+    &lt;p&gt;
+     Super power boost: {{2 | exponentialStrength: 10}}
+    &lt;/p&gt;
+    `</span>,
+  pipes: [ExponentialStrengthPipe]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> PowerBooster { }
+</div></code></pre>
+<hr>
+<h2 id="use-async-pipe">Use Async pipe</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'angular2/core'</span>;
+
+<span class="hljs-comment">// Initial view: "Message: "</span>
+<span class="hljs-comment">// After 500ms: Message: You are my Hero!"</span>
+
+<span class="hljs-meta">@Component</span>({
+selector: <span class="hljs-string">'hero-message'</span>,
+template: <span class="hljs-string">'Message: {{delayedMessage | async}}'</span>,
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeroAsyncMessageComponent {
+  delayedMessage:<span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>&gt; =
+  <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+     setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> resolve(<span class="hljs-string">'You are my Hero!'</span>), <span class="hljs-number">500</span>);
+  });
+}
+</div></code></pre>
+
+    </body>
+    </html>

@@ -3,12 +3,8 @@
 - Un peu d’histoire
 - JavaScript : le langage d’action du Web (mais pas que …)
 - Outillage
-- Nodejs
 - TypeScript
-- Utilisation de frameworks : AngularJS
-- Utilisation de frameworks : Vue.js
-- Utilisation de frameworks : AngularJS 2
-- Utilisation de frameworks : React
+- Utilisation de frameworks : Angular
 - Conclusion
 
 ----
@@ -92,16 +88,15 @@ Database (Data Storage)
 
 ----
 ### Types of Frameworks
-- Server Side: Django, symfony, Ruby on Rails (TAA)
-- Client Side: Angular, React, Vue (CLI)
+- Server Side: Django, symfony, Ruby on Rails
 <img src="resources/framework/img2.png" width="100%">
 
 ----
 ### Types of Frameworks and Single Page Application
-- Server Side: Spring Boot, Express, api-platform (TAA)
-- Client Side: Angular, React, Vue (CLI)
-<img src="resources/framework/img8.png" width="100%">
 
+- Server Side: Spring Boot, Express, api-platform
+- Client Side: Angular, React, Vue
+<img src="resources/framework/img8.png" width="100%">
 
 ---
 

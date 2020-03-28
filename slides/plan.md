@@ -5,6 +5,8 @@
 - Outillage
 - TypeScript
 - Utilisation de frameworks : Angular
+- Utilisation de frameworks : VueJS
+- Utilisation de frameworks : React
 - Conclusion
 
 ----
@@ -43,7 +45,7 @@
 
 ## Ingénierie Web
 
-<!-- .slide: style="text-align: left;"> -->  
+<!-- .slide: style="text-align: left;"> -->
 
 - Availability
 - Performance
@@ -104,7 +106,7 @@ Database (Data Storage)
 
 
 ----
-<!-- .slide: style="text-align: left;"> -->  
+<!-- .slide: style="text-align: left;"> -->
 ## Front End Runtime Languages
 
 - HTML/CSS

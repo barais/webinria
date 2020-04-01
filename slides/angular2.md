@@ -28,7 +28,7 @@
     <input type="submit" value="Say Hello" />
     <hr>
 <?php
-    echo "<h1>Hello ".$HTTP_POST_VARS["yourName"]."!</h1>";  
+    echo "<h1>Hello ".$HTTP_POST_VARS["yourName"]."!</h1>";
 ?>
   </form>
 </body>
@@ -52,12 +52,12 @@
 <html>
 <head>
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript">                                         
+  <script type="text/javascript">
    $(function() {
      $("#yourName").keyup(function () {
        $("#helloName").text("Hello " + this.value + "!");
      });
-   });                                    
+   });
  </script>
 </head>
 <body>
@@ -179,7 +179,7 @@ to Angular declarative relationships
 - relayed by Mozilla and other web actors
 - Based on current standards at W3C
 - Chrome 36 first compatible browser
-- Polyfill" technology for  older browsers 
+- Polyfill" technology for  older browsers
   - Library webcomponents.js replacing platform.js (since end 2014, with the transfer of the Polymer library to WebComponents.org)
 
 ----
@@ -347,7 +347,7 @@ p.innerHTML = 'Mon nom est : <content/>';
 - Custom Element, HTML Template and Shadow DOM allow to create Web Components, how to reuse them?
 - You can currently load JS, CSS and HTML elements separately
 - Imagine the complexity if you import Web Components that also use other Web Components
-Or use an iframe, or even JS code.... 
+Or use an iframe, or even JS code....
 
 ----
 ## HTML import - Principle
@@ -355,15 +355,15 @@ Or use an iframe, or even JS code....
 
 - new definition of the link tag
 
-```html 
+```html
 <link rel='import' href='myComponent.html'>
 ```
 
-- Allows to import the content of myComponent 
+- Allows to import the content of myComponent
   - href contains the path to the html file
 - HTML import will load the HTML document, resolve the sub-resource loading and execute the JavaScript code.
-  - The content is not automatically displayed at the import location 
-  - Code must be written to make this display 
+  - The content is not automatically displayed at the import location
+  - Code must be written to make this display
   - The rendering tags are not added to the DOM, but the style, script, link tags are well executed.
 
 
@@ -375,7 +375,7 @@ Or use an iframe, or even JS code....
 - Cross-domain restrictions apply see CORS (Cross Origin Resource Sharing) if necessary
 - Ability to manage loading errors
 
-```html 
+```html
 <link rel='import' href='myComponent.html'
 onload='handleLoad(event)'.
 onerror='handleError(event)'>
@@ -388,7 +388,7 @@ onerror='handleError(event)'>
 - V2. Release in September 2016
 - Using TypeScript
 - Many modern browsers support it (Even IE9)
-- V7. Release Oct 18, 2018
+- V9. Release Feb 6, 2020
 
 
 ----
@@ -424,7 +424,7 @@ onerror='handleError(event)'>
 - **Routing**
   - Navigation from one view to the next as users perform application tasks.
 - **Forms**
-  - Handling user input 
+  - Handling user input
 - **Pipe**
   -  Write display-value transformations that you can declare in your HTML.
 
@@ -709,10 +709,10 @@ import {Component, Input, Output, EventEmitter} from '@angular/core'
 export class ChildComponent {
   @Input("parentCount")
   count: number;
-  
+
   @Output()
   change: EventEmitter<number> = new EventEmitter<number>();
-  
+
   updateCount() {
     this.count++;
     this.change.emit(this.count);
@@ -734,8 +734,8 @@ export class ChildComponent {
           <div>
             count from child: {{count}}
           </div>
-        <child-comp 
-            [parentCount]="count" 
+        <child-comp
+            [parentCount]="count"
             (change)="updateFromChild($event)"></child-comp>
       </div>
     </div>`})
@@ -743,7 +743,7 @@ export class App {
   count: number = 0;
   updateFromChild($event){
       console.log($event);
-  }  
+  }
   reset(){
     this.count = 0;
   }
@@ -758,7 +758,7 @@ export class App {
 - **Routing**
   - Navigation from one view to the next as users perform application tasks.
 - **Forms**
-  - Handling user input 
+  - Handling user input
 - **Pipe**
   -  Write display-value transformations that you can declare in your HTML.
 
@@ -1040,8 +1040,8 @@ hero-detail.component.html
 NgControl
 ```html
 <input type="text" class="form-control"
-  required   
-  [(ngModel)]="model.name"   
+  required
+  [(ngModel)]="model.name"
   ngControl="name" >
 ```
 

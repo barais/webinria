@@ -158,3 +158,21 @@ new Vue({
 - Vue was created by Evan You after working for Google on AngularJS. You later summed up his thought process,
 
 > I figured, what if I could just ** extract the part that I really liked** about Angular and build something **really lightweight** without all the extra concepts involved?
+
+----
+
+## Concepts très proches d'Angular
+
+- composant
+- binding modèle vue
+- directive
+- props <=> input port
+- emit <=> output port
+- Lifecycle hooks
+- Router
+
+----
+
+## Compatible avec TypeScript
+
+- Demo

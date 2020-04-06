@@ -428,12 +428,26 @@ All data flows down the component hierarchy
 ----
 ## Communication between Components
 
+- [props and context](https://www.pluralsight.com/guides/react-communicating-between-components)
+
 [8 no-Flux strategies for React component communication](http://andrewhfarmer.com/component-communication/)
 
 ----
 ## Communication between Components
-Use Flux or Redux
 
+- Use Flux or Redux
+
+----
+
+## And it works with Typescript
+
+- demo
+
+```bash
+npx create-react-app my-app --template typescript
+cd my-app
+npm start
+```
 
 ----
 

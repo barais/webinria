@@ -430,7 +430,7 @@ All data flows down the component hierarchy
 
 - [props and context](https://www.pluralsight.com/guides/react-communicating-between-components)
 
-[8 no-Flux strategies for React component communication](http://andrewhfarmer.com/component-communication/)
+- [8 no-Flux strategies for React component communication](http://andrewhfarmer.com/component-communication/)
 
 ----
 ## Communication between Components
